@@ -2,19 +2,19 @@
 
 namespace App\Entity;
 
-use App\Repository\EntityRepository;
+use App\Repository\TodoRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: EntityRepository::class)]
-class Entity
+#[ORM\Entity(repositoryClass: TodoRepository::class)]
+class Todo
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 255)]
     private ?string $task = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]

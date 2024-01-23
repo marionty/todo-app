@@ -1,20 +1,57 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}My Todo lit{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .btn-logout {
+        background: red;
+        color: white;
+        border-radius: 200px;
+        padding: 1em;
+        text-decoration: none;
+        position: absolute;
+        bottom: 10%;
+        left: 40%;
+    }
+
+    .btn-logout:hover {
+        background: #101010;
+        color: #fff;
+    }
+
 </style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/mac/Desktop/cours symfony/todo-app/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/mac/Desktop/cours symfony/todo-app/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
-</div>
+<h1>My todos to do:</h1>
+
+<hr>
+
+<table>
+    <thead>
+        <tr>
+            <th>todo</th>
+            <th>Priority</th>
+            <th>Date due</th>
+            <th>Completed</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for todo in todos %}
+            <tr>
+                <td>{{ todo.todo }}</td>
+                <td>{{ todo.priority }}</td>
+                <td>{{ todo.date ? todo.date|date('Y-m-d') : '' }}</td>
+                <td>{{ todo.status ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="">edit</a>
+                    <a href="">delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a class="btn-logout" href={{ path('app_logout') }}>Déconnexion</a>
 {% endblock %}
